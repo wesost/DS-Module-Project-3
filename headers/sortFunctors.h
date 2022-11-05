@@ -54,14 +54,14 @@ public:
 };
 
 template <typename T>
-class selectionSort : public sortFunc<T> {
+class selectionSort : public sortFunc<T> { // same formula as before
 public:
 	selectionSort(std::string name = "None assigned") : sortFunc<T>(name) {}
 		
 	void operator()(std::vector<T>& unsorted);
 };
 
-
+// quicksort commented out
 // template <typename T>
 // class quickSort : public sortFunc<T> { // QUICKSORT NOT WORKING AS A FUNCTOR
 // private:
@@ -141,7 +141,7 @@ inline void insertionSort<T>::operator()(std::vector<T>& unsorted){  // () opera
 }
 
 template<typename T>
-inline void bubbleSort<T>::operator()(std::vector<T>& unsorted) // Citation: the code for bubblesort is entirely Matt's, I included it just to have an extra sort
+inline void bubbleSort<T>::operator()(std::vector<T>& unsorted) // Citation: the code for bubblesort is entirely Matt's, I included it just to have an extra sort which ended up being helpful since i was unable to get quicksort working as a functor
 {
 	auto start = std::chrono::high_resolution_clock::now();
 	bool swapped = true;

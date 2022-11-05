@@ -1,3 +1,8 @@
+// Wes Ostlund
+// MP3
+// CS273-2
+
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -5,13 +10,16 @@
 #include <sorts.h>
 #include <fstream>
 #include "..\headers\sortFunctors.h"
-
 using std::ifstream;
-
 
 template <typename T> 
 unsigned int sortFunc<T>::idPool = 0; // initialize idpool so that each functor has its own ID
 
+// main() takes in a .txt file of random numbers, and prompts the user to pit different sorting functions 
+// (which have been implemented as functors) against each other in a race to see which sorts the file fastest.
+// NOTE: I was unable to get my own quicksort implemented as a functor, so everything having to do with 
+// my quicksort functor in sortFunctors.h and main.cpp has been commented out. Instead I used matt's bubblesort from
+// the example seed code so that I would have at least 3 sorts.
 int main()
 {
 	std::vector<int> sortme; // create a vector to hold randomnumbers.txt
@@ -74,7 +82,7 @@ int main()
 			// case (4):
 			// {
 			// 	sortList.push_back(new quickSort<int>("Quick sort"));
-			// 	std::cout << "-----Quick sort has been added----- " << std::endl; // quicksort not working, commented this out
+			// 	std::cout << "-----Quick sort has been added----- " << std::endl; 
 			// 	break;
 			// }
 
@@ -114,7 +122,7 @@ int main()
 			{
 				switch ((*lit)->getID()) // the id number corresponds to each functor's position in the list
 				{
-				case (1): // so depending on if it is the first second third or fourth sort added, it will sort the first second third or fourth unsorted vector (see lines 27-32)
+				case (1): // so depending on if it is the first second third or fourth sort added, it will sort the first second or third unsorted vector (see lines 34-38)
 				{
 					(*(*lit))(sortme); // this way each functor gets an unsorted vector...
 					break;
@@ -137,14 +145,14 @@ int main()
 
 				// case (4):
 				// {
-				// 	(*(*lit))(sortme4); // only need 3 cases for 3 working functors
+				// 	(*(*lit))(sortme4); // only need 3 
 				// 	break;
 				// }
 
 				
 				default: // if sorts >= idnum 3 are added, they will show how that sort does with an already sorted vector.
 				{
-					std::cout << "Any sort functors beyond the first 3 won't sort a new array, but you can see how long they take to sort an already sorted one! " << std::endl;
+					std::cout << "Any sort functors beyond the first 3 won't sort a new vector, but you can see how long they take to sort an already sorted one! " << std::endl;
 					(*(*lit))(sortme);
 					break;
 				}
